@@ -1,0 +1,113 @@
+.App {
+	display: flex;
+	justify-content: center;
+	padding:100px !important;
+}
+
+label {
+	font-weight: bold;
+	display: flex;
+	margin-bottom: 5px;
+}
+
+input + label {
+	font-weight: bold;
+	display: inline-flex;
+	margin-right: 20px;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+textarea,
+select {
+	display: block;
+	width: 400px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	/* margin-bottom: 20px; */
+}
+
+.error {
+	color: red;
+}
+
+.form-control {
+	border: 0 !important;
+}
+
+
+div.transbox {
+  background-color: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  margin: 30px;
+  font-weight: bold;
+}
+
+.backdrop{
+	display: flex;
+	background-color: rgba(50, 50, 0, 0.4);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(1px);
+  z-index:50;
+  position: fixed;
+  /* width:350px; */
+  /* height:690px; */
+  /* align-items: center; */
+  justify-content: center;
+  max-height: 100%
+
+
+
+  /* padding: 20px; */
+  /* margin: 30px; */
+  /* font-weight: bold; */
+}
+
+.reopen{
+	color: rgb(15, 245, 15);
+	text-decoration: underline;
+}
+
+@media(max-width:550px){
+	.no_padding{
+		padding:0px !important;
+
+	}
+	.no_padding_body{
+		padding:0px !important;
+
+	}
+
+}
+
+
+@media(min-width:550px){
+	.no_padding{
+		padding:5px !important ;
+
+	}
+	.no_padding_body{
+		padding:20px !important;
+
+	}
+
+
+}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;}
