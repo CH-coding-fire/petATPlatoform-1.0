@@ -39,7 +39,7 @@ function App() {
 
 	useEffect(() => {
 		const getUser = async () => {
-			fetch('/api/auth/login/success', {
+			fetch('http://localhost:8080/api/auth/login/success', {
 				method: 'GET',
 				credentials: 'include',
 				headers: {
