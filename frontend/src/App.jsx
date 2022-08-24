@@ -39,7 +39,7 @@ function App() {
 
 	useEffect(() => {
 		const getUser = async () => {
-			fetch('http://localhost:8080/auth/login/success', {
+			fetch('/api/auth/login/success', {
 				method: 'GET',
 				credentials: 'include',
 				headers: {
@@ -95,7 +95,7 @@ function App() {
 			{/* <TestSameValue/> */}
 			<div className="no_padding_body">
 				<Routes>
-					<Route path="/" element={<CardGroup user={user} query={query}/>} />
+					<Route exact path="/" element={<CardGroup user={user} query={query}/>} />
 					<Route
 						path="/findAdopter"
 						element={user ? <FormikContainer /> : <Navigate to="/login" />}
