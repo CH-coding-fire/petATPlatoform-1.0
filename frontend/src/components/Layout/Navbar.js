@@ -16,7 +16,7 @@ import { QueryContext } from '../../Context/QueryContext';
 
 
 const logout = () => {
-	window.open('http://localhost:8080/auth/logout', '_self');
+	window.open('/api/auth/logout', '_self');
 };
 
 function NavBar({ user }) {

@@ -21,7 +21,7 @@ function BuildNickName() {
 
 	const onSubmit = async (values) => {
 		console.log('tryFetchReqUser...');
-		await fetch('http://localhost:8080/users/nicknameContact', {
+		await fetch('/api/users/nicknameContact', {
 			method: 'POST',
 			credentials: 'include',
 			headers: {
@@ -34,7 +34,7 @@ function BuildNickName() {
 			.then((response) => {
 				if (response.status === 200) {
 					console.log('response');
-					window.open('http://localhost:3000/', '_self');
+					window.open('/', '_self');
 				}
 			})
 			.catch((err) => {

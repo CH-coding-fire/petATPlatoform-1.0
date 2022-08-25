@@ -6,7 +6,7 @@ import googleLogo from '../../image/g-logo.png';
 
 function LoginForm() {
 	const loginHandler = (companyOfOAuth) => {
-		const backendUrlAuth = `http://localhost:8080/auth/${companyOfOAuth}`;
+		const backendUrlAuth = `/api/auth/${companyOfOAuth}`;
 		window.open(backendUrlAuth, '_self');
 	}
 

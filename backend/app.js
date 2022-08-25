@@ -29,13 +29,12 @@ mongoose
 	.then(() => {
 		try {
 			const today = new Date();
-			console
-				.log(
+			console.log(
 					`*********   MongoDB database ${database} CONNNECTION OPEN! at ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()} *********`
 				)
-				.then((response) => console.log(response));
 		} catch (error) {
 			console.log(`ERROR!! ${database} mongoDB connection FAILED!!!`);
+			throw new Error(error.message)
 		}
 	});
 

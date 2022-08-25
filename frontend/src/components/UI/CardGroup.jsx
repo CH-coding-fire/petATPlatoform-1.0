@@ -98,7 +98,7 @@ const CardGroup = ({user}) => {
 		console.log(animalId)
 
 
-		axios.put('http://localhost:8080/adoptions/', { animalId: (animalId? animalId:data[index]._id), ...body })
+		axios.put('/api/adoptions/', { animalId: (animalId? animalId:data[index]._id), ...body })
 			.then((res) => {
 				if (option === 'updateAvail' || option === 'updateSuccess') {
 					data[index].shadow = { shadow: !avail, option: option }
@@ -114,7 +114,7 @@ const CardGroup = ({user}) => {
 	}
 
 	const deleteAdoptionHandler = (index) => {
-		axios.delete(`http://localhost:8080/adoptions/${data[index]._id}`)
+		axios.delete(`/api/adoptions/${data[index]._id}`)
 			.then((msg) => {
 				console.log(msg)
 				setConfirmModalShow(false);
@@ -134,7 +134,7 @@ const CardGroup = ({user}) => {
 
 	useEffect(() => {
 		axios
-			.get('http://localhost:8080/adoptions/')
+			.get('/api/adoptions/')
 			.then((values) => {
 				console.log('values.data:', values.data);
 				let sortedData;
