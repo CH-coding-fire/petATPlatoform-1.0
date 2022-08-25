@@ -29,7 +29,7 @@ const CardGroup = (props) => {
 	if (data.length == 0) {
 		console.log('hi');
 		axios
-			.get('http://localhost:8080/adoptions/')
+			.get('/api/adoptions/')
 			.then((values) => {
 				setData(values.data);
 				showLoadingOrError('');
