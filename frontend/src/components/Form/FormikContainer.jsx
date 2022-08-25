@@ -182,7 +182,7 @@ function FormikContainer(props) {
 			})
 			.then((res) => {
 				console.log(res)
-				window.open('http://localhost:3000/', '_self');
+				window.open('/', '_self');
 
 			});
 	};

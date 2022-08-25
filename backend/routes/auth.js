@@ -1,7 +1,7 @@
 const passport = require('passport');
 const Users = require('../models/users');
 const router = require('express').Router();
-const CLIENT_URL= 'http://localhost:3000/';
+
 
 // Run after it auth from google is successful
 router.get('/login/success', async (req, res) => {
@@ -39,7 +39,7 @@ router.get('/login/failed', (req, res) => {
 router.get('/logout', (req, res) => {
 	console.log('REQ.USER:logout', req.user);
 	req.logout();
-	res.redirect(CLIENT_URL);
+	res.redirect(process.env.CLIENT_URL);
 });
 
 router.get(
@@ -50,7 +50,7 @@ router.get(
 router.get(
 	'/google/callback',
 	passport.authenticate('google', {
-		successRedirect: CLIENT_URL,
+		successRedirect: process.env.CLIENT_URL,
 		failureRedirect: '/login/failed',
 	})
 );
@@ -61,7 +61,7 @@ router.get(
 // router.get('/facebook/callback',
 // 	passport.authenticate('facebook',
 // 		{
-// 			successRedirect: CLIENT_URL,
+// 			successRedirect: process.env.CLIENT_URL,
 // 			failureRedirect: '/login'
 // 		}),
 //   function(req, res) {

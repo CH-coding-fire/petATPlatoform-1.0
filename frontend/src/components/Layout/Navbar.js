@@ -30,7 +30,7 @@ function NavBar({ user }) {
 	navigate('/findAdopter');
 	}
 	const reloadHomepageHandler = ()=>{
-		window.open('http://localhost:3000/', '_self');
+		window.open('/', '_self');
 	}
 	return (
 		<>

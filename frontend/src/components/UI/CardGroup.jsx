@@ -107,7 +107,7 @@ const CardGroup = ({user}) => {
 				setData([...data])
 				console.log(res.data)
 				if (option === 'updateAnimalInfo') {
-					window.open('http://localhost:3000/', '_self');
+					window.open('/', '_self');
 				}
 			}).catch((error)=>{console.log(error)}
 			)
