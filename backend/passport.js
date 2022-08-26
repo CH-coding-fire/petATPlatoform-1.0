@@ -5,7 +5,7 @@ const FacebookStrategy = require("passport-facebook").Strategy
 passport.use(new GoogleStrategy({
 			clientID: process.env.GOOGLE_CLIENT_ID,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-			callbackURL: '/auth/google/callback',
+			callbackURL: process.env.SERVER_URL+'/auth/google/callback',
 		},
 		function (accessToken, refreshToken, profile, done) {
 			done(null, profile);
@@ -17,7 +17,7 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
     clientID: process.env.CLIENT_ID_FB,
     clientSecret: process.env.CLIENT_SECRET_FB,
-    callbackURL: "/auth/facebook/callback"
+    callbackURL: process.env.SERVER_URL+"/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
     User.findOrCreate({ userId: profile.id }, function (err, user) {

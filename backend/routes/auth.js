@@ -2,6 +2,18 @@ const passport = require('passport');
 const Users = require('../models/users');
 const router = require('express').Router();
 
+router.get(
+	'/google',
+	passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+router.get(
+	'/google/callback',
+	passport.authenticate('google', {
+		successRedirect: process.env.CLIENT_URL,
+		failureRedirect: '/login/failed',
+	})
+);
 
 // Run after it auth from google is successful
 router.get('/login/success', async (req, res) => {
@@ -42,18 +54,9 @@ router.get('/logout', (req, res) => {
 	res.redirect(process.env.CLIENT_URL);
 });
 
-router.get(
-	'/google',
-	passport.authenticate('google', { scope: ['profile', 'email'] })
-);
 
-router.get(
-	'/google/callback',
-	passport.authenticate('google', {
-		successRedirect: process.env.CLIENT_URL,
-		failureRedirect: '/login/failed',
-	})
-);
+
+
 
 // router.get('/facebook',
 //   passport.authenticate('facebook'));
@@ -61,7 +64,7 @@ router.get(
 // router.get('/facebook/callback',
 // 	passport.authenticate('facebook',
 // 		{
-// 			successRedirect: process.env.CLIENT_URL,
+// 			successRedirect: process.env.CLIENT_URLe,
 // 			failureRedirect: '/login'
 // 		}),
 //   function(req, res) {

@@ -32,8 +32,7 @@ function LoginForm() {
 						</span>
 					</div>
 				</div>
-				{/* <Button onClick={() => { loginHandler('facebook') }}>facebook login</Button> */}
-			</div>
+k			</div>
 		</div>
 	);
 }
