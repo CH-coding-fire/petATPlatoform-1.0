@@ -10,6 +10,7 @@ import {
 	useNavigate,
 	useParams,
 	useLocation,
+	HashRouter,
 } from 'react-router-dom';
 import LoginForm from './components/Form/LoginForm';
 import FormikContainer from './components/Form/FormikContainer';
@@ -57,8 +58,6 @@ function App() {
 					if(!user.nickname){
 					navigate('/createnickname')
 					}
-					// setUserContext(user)s
-					// window.open('http://localhost:3000/findAdopter', '_self');
 				})
 				.catch((err) => {
 					console.log('ERROR!!', err);
@@ -67,21 +66,11 @@ function App() {
 		getUser();
 	}, []);
 
-	// console.log('PRINT_USER:', user);
-
 	if (user && user.nickname == null && pathname !== '/createnickname') {
 		navigate('/createnickname');
 		console.log('no nick name');
 	}
-	// const tryGetReqUser = async () => {
-	// 	console.log('try to get req.User...');
-	// 	await axios
-	// 		.get('http://localhost:8080/req', { withCredentials: true })
-	// 		.then((res) => console.log(res))
-	// 		.catch((err) => {
-	// 			console.log('whatever');
-	// 		});
-	// };
+
 	const searchQueryHandler = (query) => {
 		console.log('query:', query);
 		// setQuery(query)
@@ -110,7 +99,16 @@ function App() {
 						path="/search"
 						element={<Search searchQueryHandler={searchQueryHandler}/>}
 					/>
-					<Route path="*" element={<div>404!!</div>} />
+					<Route
+						path="/.well-known/pki-validation/3B9904FB619246AC9422A8FD1D2B4005.txt"
+						element={<div>hello</div>}
+					/>
+					{/* <HashRouter path="/.well-known/pki-validation/3B9904FB619246AC9422A8FD1D2B4005.txt">
+
+
+					</HashRouter> */}
+
+					<Route path="*" element={<div>404 Cannot find the page</div>} />
 				</Routes>
 			</div>
 			</QueryContext.Provider>
