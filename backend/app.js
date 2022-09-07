@@ -9,18 +9,34 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const passportSetup = require('./passport');
 const cookieSession = require('cookie-session');
-var bodyParser = require('body-parser');
-const FacebookStrategy = require("passport-facebook").Strategy
+const bodyParser = require('body-parser');
+const fs = require('fs')
+const https = require('https')
+const hostname = "petexchangehk.com"
+
+const httpsOptions = {
+	cert: fs.readFileSync('./ssl/www_petexchangehk_com.crt'),
+	ca: fs.readFileSync('./ssl/www_petexchangehk_com.ca-bundle')
+	// key: fs.readFileSync('./')
+}
+
+const httpsServer = https.createServer(httpsOptions, app)
+
+
+
+// const FacebookStrategy = require("passport-facebook").Strategy
 
 //*Above is for libraries, below is for modules
 const adoptionRoute = require('./routes/adoptions');
 const usersRoute = require('./routes/users');
 const authRoute = require('./routes/auth');
 const User = require('./models/users');
-// let bodyParser = require('body-parser');
 const cors = require('cors');
-
 const database = 'pet-service';
+
+
+
+
 mongoose
 	.connect(`mongodb://localhost:27017/${database}`, {
 		useNewUrlParser: true,
@@ -63,7 +79,6 @@ const sessionConfig = {
 };
 
 app.use(bodyParser.json());
-
 app.use(session(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -88,10 +103,18 @@ app.post('/req', async (req, res) => {
 	console.log('from app req.body:', req.body);
 });
 
-const PORT = 8080;
-app.listen(PORT, () => {
-	const today = new Date();
-	console.log(
-		`*********  Express: LISTENING TO PORT: ${PORT} at ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()} *********`
-	);
-});
+// const PORT = 8080;
+// app.listen(PORT, () => {
+// 	const today = new Date();
+// 	console.log(
+// 		`*********  Express: LISTENING TO PORT: ${PORT} at ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()} *********`
+// 	);
+// });
+
+const httpsPort = 8080
+httpsServer.listen(httpsPort, hostname)
+console.log('hello...')
+
+
+
+

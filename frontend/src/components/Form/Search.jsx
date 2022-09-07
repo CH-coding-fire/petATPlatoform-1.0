@@ -13,6 +13,7 @@ import '../../App.css';
 import { QueryContext } from '../../Context/QueryContext';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import validationText from '../../../package.json'
 
 function Search({ searchQueryHandler }) {
     const navigate = useNavigate();
@@ -37,8 +38,12 @@ function Search({ searchQueryHandler }) {
     const goLevel3classification = ['rodents'];
     const notGoSpeciesNameForm = ['others', 'plants', 'birds'];
 
-                return (
-                    <div className="d-flex justify-content-center ">
+
+    return (
+        <div className="d-flex justify-content-center ">
+            <div>fuck you</div>
+            {/* <div>{validationText}</div> */}
+
                         <div className="border border-2 p-3 d-flex justify-content-center flex-wrap shadow rounded ">
                             <div className={classes['App']}>
                                 <Formik
