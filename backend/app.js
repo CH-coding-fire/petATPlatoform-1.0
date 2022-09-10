@@ -16,7 +16,13 @@ const hostname = "petexchangehk.com"
 const httpsOptions = {
 	cert: fs.readFileSync('./ssl/www_petexchangehk_com.crt'),
 	ca: fs.readFileSync('./ssl/www_petexchangehk_com.ca-bundle'),
-	key:fs.readFileSync('../../../csr.pem')
+	// key: fs.readFileSync('../../../csr.pem'),
+	key: fs.readFileSync('../../../private.key'),
+	// key: fs.readFileSync('./private.key', 'utf8'),
+	// key: fs.readFileSync('./private.key', 'utf8'),
+
+
+
 	// key: fs.readFileSync('./')
 }
 const httpsServer = https.createServer(httpsOptions, app)
