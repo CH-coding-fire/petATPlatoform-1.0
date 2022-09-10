@@ -12,20 +12,14 @@ const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 const fs = require('fs')
 const https = require('https')
-const hostname = "petexchangehk.com"
-
+const hostname = "localhost3"
 const httpsOptions = {
 	cert: fs.readFileSync('./ssl/www_petexchangehk_com.crt'),
-	ca: fs.readFileSync('./ssl/www_petexchangehk_com.ca-bundle')
+	ca: fs.readFileSync('./ssl/www_petexchangehk_com.ca-bundle'),
+	key:fs.readFileSync('../../../..csr.pem')
 	// key: fs.readFileSync('./')
 }
-
 const httpsServer = https.createServer(httpsOptions, app)
-
-
-
-// const FacebookStrategy = require("passport-facebook").Strategy
-
 //*Above is for libraries, below is for modules
 const adoptionRoute = require('./routes/adoptions');
 const usersRoute = require('./routes/users');
@@ -112,8 +106,9 @@ app.post('/req', async (req, res) => {
 // });
 
 const httpsPort = 8080
-httpsServer.listen(httpsPort, hostname)
-console.log('hello...')
+httpsServer.listen(httpsPort, hostname, () => {
+console.log('hello...server successfully launch I guess')
+})
 
 
 
