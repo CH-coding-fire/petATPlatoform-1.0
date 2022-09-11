@@ -11,21 +11,7 @@ const passportSetup = require('./passport');
 const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 const fs = require('fs')
-const https = require('https')
-const hostname = "petexchangehk.com"
-const httpsOptions = {
-	cert: fs.readFileSync('./ssl/www_petexchangehk_com.crt'),
-	ca: fs.readFileSync('./ssl/www_petexchangehk_com.ca-bundle'),
-	// key: fs.readFileSync('../../../csr.pem'),
-	key: fs.readFileSync('../../../private.key'),
-	// key: fs.readFileSync('./private.key', 'utf8'),
-	// key: fs.readFileSync('./private.key', 'utf8'),
 
-
-
-	// key: fs.readFileSync('./')
-}
-const httpsServer = https.createServer(httpsOptions, app)
 //*Above is for libraries, below is for modules
 const adoptionRoute = require('./routes/adoptions');
 const usersRoute = require('./routes/users');
@@ -33,9 +19,6 @@ const authRoute = require('./routes/auth');
 const User = require('./models/users');
 const cors = require('cors');
 const database = 'pet-service';
-
-
-
 
 mongoose
 	.connect(`mongodb://localhost:27017/${database}`, {
@@ -103,18 +86,40 @@ app.post('/req', async (req, res) => {
 	console.log('from app req.body:', req.body);
 });
 
-// const PORT = 8080;
-// app.listen(PORT, () => {
-// 	const today = new Date();
-// 	console.log(
-// 		`*********  Express: LISTENING TO PORT: ${PORT} at ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()} *********`
-// 	);
-// });
+const https = require('https');
+const hostname = "localhost"
+const httpsOptions = {
+	cert: fs.readFileSync('./ssl/www_petexchangehk_com.crt'),
+	ca: fs.readFileSync('./ssl/www_petexchangehk_com.ca-bundle'),
+	// key: fs.readFileSync('./ssl/csr.pem'),
+	key: fs.readFileSync('./ssl/private.key'),
+}
+const PORT = 8080;
+const httpsServer = https.createServer(httpsOptions, app)
+//method from https://adamtheautomator.com/https-nodejs/
+// https.createServer(httpsOptions,app).listen(PORT, () => {
+// 	console.log('server is running at port 8080')
+// })
 
-const httpsPort = 8080
-httpsServer.listen(httpsPort, hostname, () => {
-console.log('hello...server successfully launch I guess')
-})
+const connect_mode = 'try_https'
+
+if (connect_mode == 'express_vanilla') {
+	app.listen(PORT, () => {
+		const today = new Date();
+		console.log(
+			`*********  Express: LISTENING TO PORT: ${PORT} at ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()} *********`
+		);
+	})
+} else if (connect_mode == 'try_https') {
+	httpsServer.listen(PORT, hostname, () => {
+		console.log('hello...server successfully launch, remember to have "https" in the browser')
+	})
+}
+
+
+
+
+
 
 
 
